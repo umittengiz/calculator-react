@@ -76,6 +76,10 @@ body {
   width: 50%;
 }
 
+.button.w75 {
+  width: 75%;
+}
+
 .button.eq:hover {
   color: #ffffff;
   background: #91e012;

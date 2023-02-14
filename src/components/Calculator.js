@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Calculator.css"
+import "./Calculator.css";
 
 const Calculator = () => {
   const [displayValue, setDisplayValue] = useState("0");
@@ -39,9 +39,16 @@ const Calculator = () => {
   const handleEqualsClick = () => {
     if (operation !== null) {
       const result = calculate();
-      setStoredValue(result);
-      setDisplayValue(result);
-      setOperation(null);
+      if (result !== null && result !== undefined) {
+        setStoredValue(result);
+        setDisplayValue(result);
+        setOperation(null);
+      } else {
+        setStoredValue(null);
+        setDisplayValue("ERROR");
+        setOperation(null);
+        console.log("ERROR: Result not found.")
+      }
     }
   };
 
@@ -77,37 +84,70 @@ const Calculator = () => {
             <div class="calc-typed">{displayValue}</div>
           </div>
           <div class="calc-button-row">
-            <div class="button c w" onClick={() => handleClearClick()}>C</div>
-            <div class="button o" onClick={() => handleOperatorClick("%")}>%</div>
-            <div class="button o" onClick={() => handleOperatorClick("/")}>/</div>
+            <div class="button c w75" onClick={() => handleClearClick()}>
+              C
+            </div>
+            <div class="button o" onClick={() => handleOperatorClick("/")}>
+              /
+            </div>
           </div>
           <div class="calc-button-row">
-            <div class="button" onClick={() => handleDigitClick("7")}>7</div>
-            <div class="button" onClick={() => handleDigitClick("8")}>8</div>
-            <div class="button" onClick={() => handleDigitClick("9")}>9</div>
-            <div class="button o" onClick={() => handleOperatorClick("x")}>x</div>
+            <div class="button" onClick={() => handleDigitClick("7")}>
+              7
+            </div>
+            <div class="button" onClick={() => handleDigitClick("8")}>
+              8
+            </div>
+            <div class="button" onClick={() => handleDigitClick("9")}>
+              9
+            </div>
+            <div class="button o" onClick={() => handleOperatorClick("x")}>
+              x
+            </div>
           </div>
           <div class="calc-button-row">
-            <div class="button" onClick={() => handleDigitClick("4")}>4</div>
-            <div class="button" onClick={() => handleDigitClick("5")}>5</div>
-            <div class="button" onClick={() => handleDigitClick("6")}>6</div>
-            <div class="button o" onClick={() => handleOperatorClick("-")}>−</div>
+            <div class="button" onClick={() => handleDigitClick("4")}>
+              4
+            </div>
+            <div class="button" onClick={() => handleDigitClick("5")}>
+              5
+            </div>
+            <div class="button" onClick={() => handleDigitClick("6")}>
+              6
+            </div>
+            <div class="button o" onClick={() => handleOperatorClick("-")}>
+              −
+            </div>
           </div>
           <div class="calc-button-row">
-            <div class="button" onClick={() => handleDigitClick("1")}>1</div>
-            <div class="button" onClick={() => handleDigitClick("2")}>2</div>
-            <div class="button" onClick={() => handleDigitClick("3")}>3</div>
-            <div class="button o" onClick={() => handleOperatorClick("+")}>+</div>
+            <div class="button" onClick={() => handleDigitClick("1")}>
+              1
+            </div>
+            <div class="button" onClick={() => handleDigitClick("2")}>
+              2
+            </div>
+            <div class="button" onClick={() => handleDigitClick("3")}>
+              3
+            </div>
+            <div class="button o" onClick={() => handleOperatorClick("+")}>
+              +
+            </div>
           </div>
           <div class="calc-button-row">
-            <div class="button" onClick={() => handleDecimalClick()}>.</div>
-            <div class="button" onClick={() => handleDigitClick("0")}>0</div>
-            <div class="button o w eq" onClick={() => handleEqualsClick()}>=</div>
+            <div class="button" onClick={() => handleDecimalClick()}>
+              .
+            </div>
+            <div class="button" onClick={() => handleDigitClick("0")}>
+              0
+            </div>
+            <div class="button o w eq" onClick={() => handleEqualsClick()}>
+              =
+            </div>
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default Calculator;
